@@ -160,7 +160,8 @@ b_skip = False
 
 # Main game loop
 running = True
-total_iterations = 1000
+total_iterations = 30
+delta_minutes = 60
 current_iteration = 0
 while running:
     if current_iteration >= total_iterations:
@@ -209,7 +210,7 @@ while running:
 
     if current_time - last_update_time > update_interval or b_skip == True:
         #add n minutes to start time
-        d_start_time = d_start_time + pd.Timedelta(minutes=30)
+        d_start_time = d_start_time + pd.Timedelta(minutes=delta_minutes)
         start_time = d_start_time.strftime('%Y-%m-%d %H:%M:%S')
         price_data, vol_data, current_prices = update_graph_data(symbols,start_time,n_prev)
         best_coin, running_total, best_coin_price = transact(best_coin, current_coin, running_total, current_prices)
